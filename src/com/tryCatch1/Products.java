@@ -20,6 +20,12 @@ public class Products {
         this.quanity = 0;
     }
 
+
+
+    public void myToString(){
+        System.out.println("Product: " + this.name + " -> Price: " + this.price);
+    }
+
     public String getName() {
         return name;
     }

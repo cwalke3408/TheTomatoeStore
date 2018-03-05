@@ -26,7 +26,7 @@ public class Main {
         for (Products product : productList1) {
             if (product.getQuanity() > 0) {
                 vendor1.add(product);
-                System.out.println(product.toString());
+               product.myToString();
             }
         }
 
@@ -39,7 +39,7 @@ public class Main {
         for (Products product : productList2) {
             if (product.getQuanity() > 0) {
                 vendor2.add(product);
-                System.out.println(product.toString());
+                product.myToString();
             }
         }
         Products shirt = new Products("Shirt", "button up shirt", 7.49d);
@@ -51,13 +51,21 @@ public class Main {
         for (Products product : productList3) {
             if (product.getQuanity() > 0) {
                 vendor3.add(product);
-                System.out.println(product.toString());
+                product.myToString();
             }
 
         }
 
         Cart myCart = new Cart();
         myCart.addToCart(pants, 2);
-        System.out.println(myCart.getNumberOfProduct(pants));
+        myCart.addToCart(pants, 5);
+        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+
+        myCart.substractToCart(pants, 1);
+        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+
+        myCart.substractToCart(pants, 5);
+        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+
     }
 }
