@@ -1,6 +1,8 @@
 package com.tryCatch1;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -57,15 +59,40 @@ public class Main {
         }
 
         Cart myCart = new Cart();
-        myCart.addToCart(pants, 2);
-        myCart.addToCart(pants, 5);
-        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
 
-        myCart.substractToCart(pants, 1);
-        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+        Scanner sc = new Scanner(System.in);
+        boolean isThisTrue = true;
 
-        myCart.substractToCart(pants, 5);
-        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+        while(isThisTrue) {
+            try {
+                System.out.println("What do you want in your cart?");
+                String productName = sc.nextLine();
+
+                if (productName.equalsIgnoreCase("checkout")) {
+                    System.out.println("Thanks!  Have a great day");
+                    isThisTrue = false;
+                } else {
+                    System.out.println();
+
+                    System.out.println("How many to place in cart? ");
+                    Integer itemAmount = sc.nextInt();
+
+
+                    myCart.addToCart(productName, itemAmount);
+                    System.out.println(productName + " amount: " + myCart.getNumberOfProduct(productName));
+                }
+            } catch(InputMismatchException e){
+                System.out.println("I have a problem");
+            } finally {
+                System.out.println("Print out isThisTrue: " + isThisTrue);
+            }
+
+        }
+//        myCart.substractToCart(pants, 1);
+//        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+//
+//        myCart.substractToCart(pants, 5);
+//        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
 
     }
 }

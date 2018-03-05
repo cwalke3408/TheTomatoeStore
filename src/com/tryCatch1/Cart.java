@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
-    Map < Products, Integer> cart;
+    Map <String, Integer> cart;
 
     public Cart() {
-        cart = new HashMap<Products, Integer>();
+        cart = new HashMap<String, Integer>();
     }
-    public void addToCart(Products product, int numberOfItemsToAdd){
+    public void addToCart(String product, int numberOfItemsToAdd){
         Integer numberOfItemsInCart = cart.get(product);
         if(numberOfItemsInCart != null){
             if(numberOfItemsInCart > 0){
@@ -24,7 +24,7 @@ public class Cart {
         }
     }
 
-    public void substractToCart(Products products, int numberToTakeOut){
+    public void substractToCart(String products, int numberToTakeOut){
         // Get the number of this product in the cart
         Integer numberOfItemsInCart = cart.get(products);
         if(numberOfItemsInCart != null){
@@ -36,7 +36,7 @@ public class Cart {
         }
     }
 
-    public int getNumberOfProduct(Products product){
+    public int getNumberOfProduct(String product){
         if(cart.containsKey(product)) {
             return cart.get(product);
         }
