@@ -1,6 +1,7 @@
 package com.tryCatch1;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -63,16 +64,30 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean isThisTrue = true;
 
+        HashSet<String> names = new HashSet<String>();
+        Products[][]threeProductLists = {productList1, productList2, productList3};
+        for(Products[] a_list : threeProductLists){
+            for(Products product : a_list){
+                names.add(product.getName());
+            }
+        }
+
         while(isThisTrue) {
             try {
                 System.out.println("What do you want in your cart?");
-                String productName = sc.nextLine();
+
+                String productName = sc.next();
+
+                while(!names.contains(productName) && !productName.equalsIgnoreCase("checkout")){
+                    System.out.println("Please specify a product that we own");
+                    productName = sc.next();
+                }
 
                 if (productName.equalsIgnoreCase("checkout")) {
                     System.out.println("Thanks!  Have a great day");
                     isThisTrue = false;
                 } else {
-                    System.out.println();
+
 
                     System.out.println("How many to place in cart? ");
                     Integer itemAmount = sc.nextInt();
@@ -88,11 +103,7 @@ public class Main {
             }
 
         }
-//        myCart.substractToCart(pants, 1);
-//        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
-//
-//        myCart.substractToCart(pants, 5);
-//        System.out.println(pants.getName() + " amount: "+myCart.getNumberOfProduct(pants));
+
 
     }
 }
